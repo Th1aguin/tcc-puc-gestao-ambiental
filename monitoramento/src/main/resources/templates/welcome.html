@@ -9,13 +9,11 @@
 </head>
 <body>
   <div class="container">
-    <c:if test="${pageContext.request.userPrincipal.name != null}">
-        <form id="logoutForm" method="POST" action="${contextPath}/logout">
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+        <form id="logoutForm" method="POST" action="${contextPath}/logout"  th:if="${#request.userPrincipal.name}">
         </form>
 
-        <h2>Welcome ${pageContext.request.userPrincipal.name} | <a onclick="document.forms['logoutForm'].submit()">Logout</a></h2>
-    </c:if>
+		<span th:utext="${#request.userPrincipal.name}">
+        <h2>Welcome ${#request.userPrincipal.name} | <a onclick="document.forms['logoutForm'].submit()">Logout</a></h2>
   </div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   <script type="text/javascript" th:src="@{/js/bootstrap.min.js}" ></script>
