@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	
+	<nav class="navbar navbar-default navbar-static-top">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <a class="" href="#">
+	        <img height="50"  th:src="@{/images/logo_secom_nav-AC.png}"  alt="" />
+	      </a>
+	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	    </div>
+	     <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li ><a href="#">Home</a></li>
+              <li ><a href="/registration">Cadastro Usuario</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+		        <li><a th:text="${'Ola ' + #request.userPrincipal.name}" href="#" role="menuitem"> Logout</a></li>
+		        <li><a href="javascript: document.logoutForm.submit()" role="menuitem"> Logout</a></li>
+		      </ul>
+         </div>
+         
+	   <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+	      <input hidden type="submit" value="Sign Out"/>
+	   </form> 
+	  </div>
+	</nav>
+
+</html>

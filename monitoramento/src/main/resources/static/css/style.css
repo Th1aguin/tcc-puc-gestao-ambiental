@@ -1,0 +1,22 @@
+
+@media (min-width:768px){
+	.panel-default{
+		margin-left: 10px;
+		margin-right: 10px;
+	}
+	
+	.alert{
+		margin-left: 10px;
+		margin-right: 10px;
+	}
+}
+
+.titulo-panel{
+	float: left;
+	padding-top: 2px;
+}
+
+.titulo-link{
+	float:right;
+	padding: 0px;
+}

@@ -8,7 +8,7 @@
 </head>
 	
 	<section layout:fragment="conteudo">
-
+		
 		<div class="alert alert-success alert-dismissible" th:if="${!#strings.isEmpty(mensagem)}" role="alert">
 		  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 		  <span th:text="${mensagem}"></span>
@@ -24,11 +24,11 @@
 		  </div>
 		  <div class="panel-body">
 		   
-		   		<form method="GET" class="form-horizontal" >
+		   		<form method="GET" class="form-horizontal" th:object="${filtro}">
 		   			<div class="form-group">
 		   				<div class="col-sm-4">
 		   					<div class="input-group">
-		   						<input class="form-control" placeholder="Digite o titulo" autofocus="autofocus"/> 
+		   						<input class="form-control" th:field="*{descricao}" placeholder="Digite o titulo" autofocus="autofocus"/> 
 		   						<span class="input-group-btn">
 		   							<button type="submit" class="btn btn-default">
 		   								<i class="glyphicon glyphicon-search"></i>
@@ -54,8 +54,32 @@
 							</tr>
 						</thead>
 						<tbody>
-							
-							<tr>
+							<tr th:each="item : ${titulos}">
+								<td class="text-center" th:text="${item.codigo}">1</td>
+								<td th:text="${item.descricao}">1</td>
+								<td class="text-center" th:text="${{item.data}}">1</td>
+								<td class="text-center" th:text="|R$ ${{item.valor}}|">1</td>
+								<td class="text-center" th:attr="data-role=${item.codigo}" >
+									<span class="label "  th:text="${item.status.descricao}" 
+									th:classappend="${item.pendente ? 'label-danger':'label-success'}">Success</span>
+								</td>
+								<td class="text-center" >
+									 <a class="btn btn-link btn-xs" th:href="@{/titulos/{codigo}(codigo=${item.codigo})}" 
+									 	title="Editar" rel="tooltip" data-toggle="tooltip" data-placement="top">
+									 	<span class="glyphicon glyphicon-pencil"></span>
+									 </a>
+									  <a class="btn btn-link btn-xs" data-toggle="modal" th:attr="data-codigo=${item.codigo}, data-descricao=${item.descricao}"
+									  	title="Excluir" rel="tooltip" data-placement="top" data-target="#modalDelete">
+									 	<span class="glyphicon glyphicon-remove"></span>
+									 </a>
+									  <a class="btn btn-link btn-xs receber"  th:if="${item.pendente}" th:href="@{/titulos/{codigo}/receber(codigo=${item.codigo})}"
+									  	title="Receber" rel="tooltip" th:attr="data-codigo=${item.codigo}" data-placement="top" >
+									 	<span class="glyphicon glyphicon-check"></span>
+									 </a>
+								</td>
+								
+							</tr>
+							<tr th:if="${#lists.isEmpty(titulos)}">
 								<td colspan="6">Nenhum titulo foi encontrado</td>
 							</tr>
 						</tbody>
@@ -63,6 +87,7 @@
 				</div>
 		  </div>
 		  
+		  	<div layout:include="modal"></div>
 		</div>
 	</section>
 </html>
