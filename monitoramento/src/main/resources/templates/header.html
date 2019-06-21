@@ -21,7 +21,7 @@
               <li ><a href="#">Home</a></li>
               <li ><a href="/registration">Cadastro Usuario</a></li>
             </ul>
-            <ul class="nav navbar-nav navbar-right">
+            <ul th:if="${#request.userPrincipal}"  class="nav navbar-nav navbar-right">
 		        <li><a th:text="${'Ola ' + #request.userPrincipal.name}" href="#" role="menuitem"> Logout</a></li>
 		        <li><a href="javascript: document.logoutForm.submit()" role="menuitem"> Logout</a></li>
 		      </ul>

@@ -1,0 +1,1 @@
+insert into role (name) values('ADMIN');insert into user (password,username) values('$2a$10$WZS3w7/BSsWpI94LBoZ.juVhBq5KXK16quEiV7iLt91sPCLKNWLAC','admin');
