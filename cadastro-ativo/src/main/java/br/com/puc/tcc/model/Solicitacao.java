@@ -3,6 +3,8 @@ package br.com.puc.tcc.model;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -10,9 +12,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 public class Solicitacao {
@@ -23,19 +26,26 @@ public class Solicitacao {
 	
 	@DateTimeFormat(pattern="dd/MM/yyyy")
 	@Temporal(TemporalType.DATE)
-	@NotNull(message="Data obrigatória")
+	@JsonFormat
+	  (shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	private Date dataSolicitacao;
 	
 	@DateTimeFormat(pattern="dd/MM/yyyy")
 	@Temporal(TemporalType.DATE)
+	@JsonFormat
+	  (shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	private Date dataProxManuntencao;
 	
+	@Enumerated(EnumType.STRING)
 	private TipoEnum tipo;
 	
+	@Enumerated(EnumType.STRING)
 	private StatusEnum status;
 	
 	@DateTimeFormat(pattern="dd/MM/yyyy")
 	@Temporal(TemporalType.DATE)
+	@JsonFormat
+	  (shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	private Date dataManuntencao;
 	
 	private String descricao;
@@ -84,6 +94,14 @@ public class Solicitacao {
 
 	public void setDataManuntencao(Date dataManuntencao) {
 		this.dataManuntencao = dataManuntencao;
+	}
+
+	public TipoEnum getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(TipoEnum tipo) {
+		this.tipo = tipo;
 	}
 
 	public String getDescricao() {

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import br.com.puc.tcc.model.Ativo;
@@ -39,5 +40,18 @@ public class AtivosService {
 			return ativo.get();
 		}
 		throw new ServiceException("O Ativo não pôde ser encontrado.");
+	}
+	
+	public void deletar(Long id) {
+		try {
+			ativoRepository.deleteById(id);
+		} catch (EmptyResultDataAccessException e) {
+			throw new ServiceException("O livro não pôde ser encontrado.");
+		}
+	}
+	
+	public void atualizar(Ativo livro) {
+		buscar(livro.getCodigo());
+		ativoRepository.save(livro);
 	}
 }

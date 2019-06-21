@@ -1,5 +1,7 @@
 package br.com.puc.tcc.model;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 public enum TipoEnum {
 
 	CORRETIVA("C"),
@@ -11,6 +13,7 @@ public enum TipoEnum {
 		this.descricao =descricao;
 	}
 	
+	@JsonValue
 	public String getDescricao() {
 		return descricao;
 	}
