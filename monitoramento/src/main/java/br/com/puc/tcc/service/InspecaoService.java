@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.puc.tcc.model.Inspecao;
 import br.com.puc.tcc.repository.InspecaoRepository;
+import br.com.puc.tcc.repository.filtro.InspecaoFiltro;
 import br.com.puc.tcc.service.exception.ServiceException;
 
 @Service
@@ -41,6 +42,11 @@ public class InspecaoService {
 		} catch (EmptyResultDataAccessException e) {
 			throw new ServiceException("O livro não pôde ser encontrado.");
 		}
+	}
+	
+	public List<Inspecao> pesquisar(InspecaoFiltro filtro){
+		return solicitacaoRepository.findByBarragem_Id(filtro.getId());
+		
 	}
 	
 	public void atualizar(Inspecao livro) {

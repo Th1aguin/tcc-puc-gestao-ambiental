@@ -3,6 +3,8 @@ package br.com.puc.tcc.model;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,9 +25,10 @@ public class Barragem {
 	
 	private Double longitude;
 	
-	private String mineiro;
+	private String minerio;
 	
-	private String metodo;
+	@Enumerated(EnumType.STRING)
+	private MetodoEnum metodo;
 	
 	@OneToMany(mappedBy = "barragem")
 	@JsonIgnore
@@ -55,20 +58,36 @@ public class Barragem {
 		this.longitude = longitude;
 	}
 
-	public String getMineiro() {
-		return mineiro;
-	}
-
-	public void setMineiro(String mineiro) {
-		this.mineiro = mineiro;
-	}
-
-	public String getMetodo() {
+	public MetodoEnum getMetodo() {
 		return metodo;
 	}
 
-	public void setMetodo(String metodo) {
+	public void setMetodo(MetodoEnum metodo) {
 		this.metodo = metodo;
+	}
+
+	public Double getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(Double latitude) {
+		this.latitude = latitude;
+	}
+
+	public String getMinerio() {
+		return minerio;
+	}
+
+	public void setMinerio(String minerio) {
+		this.minerio = minerio;
+	}
+
+	public List<Inspecao> getSolicitacoes() {
+		return solicitacoes;
+	}
+
+	public void setSolicitacoes(List<Inspecao> solicitacoes) {
+		this.solicitacoes = solicitacoes;
 	}
 
 	@Override
@@ -99,7 +118,7 @@ public class Barragem {
 	@Override
 	public String toString() {
 		return "Barragem [id=" + id + ", nome=" + nome + ", latitude=" + latitude + ", longitude=" + longitude
-				+ ", mineiro=" + mineiro + ", metodo=" + metodo + "]";
+				+ ", mineiro=" + minerio + ", metodo=" + metodo + "]";
 	}
 	
 }

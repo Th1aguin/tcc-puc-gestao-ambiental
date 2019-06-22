@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="LayoutPadrao">
+<head>
+	<title>Cadastro Inspecao</title>
+</head>
+	
+	<section layout:fragment="conteudo">
+	
+	
+	<form class="form-horizontal" method="post" th:action="@{/inspect}" th:object="${inspecao}">
+	
+		<div class="alert alert-success alert-dismissible" th:if="${!#strings.isEmpty(mensagem)}" role="alert">
+		  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		  <span th:text="${mensagem}"></span>
+		</div>
+		
+		<div class="alert alert-danger" th:if="${#fields.hasAnyErrors()}">
+			<div th:each="item :${#fields.detailedErrors()}">
+				<span th:text="${item.message}"></span>
+			</div>
+		</div>
+	
+		<div class="panel panel-default">
+		  <div class="panel-heading">
+		    <div class="clearfix">
+			    <h3 class="panel-title titulo-panel">Cadastro Inspecao</h3>
+			    <a class="btn btn-link titulo-link" th:href="@{/inspect}">Lista Inspecao</a>
+			  </div>
+		  </div>
+		  <div class="panel-body">
+		  
+		  		<input type="hidden" th:field="*{id}" />
+		   
+				 <div class="form-group" th:classappend="${#fields.hasErrors('data')} ? 'has-error'">
+				 	<label for="data" class="col-sm-2 control-label">Data</label>
+				 	<div class="col-sm-4">
+					    <input  id="data" type="text" th:field="*{data}" class="form-control" placeholder="Data Inspeção"
+					    data-provide="datepicker" data-date-format="dd/mm/yyyy" data-date-language="pt-BR" 
+					    data-date-autoclose="true" data-date-today-highlight="true"/>
+				 	</div>
+				  </div>
+				  
+				  <div class="form-group" th:classappend="${#fields.hasErrors('categoriaRisco')} ? 'has-error'">
+				 	<label for="categoriaRisco" class="col-sm-2 control-label">Categoria de Risco</label>
+				 	<div class="col-sm-4">
+					    <input  id="categoriaRisco" th:field="*{categoriaRisco}" type="text" class="form-control" placeholder="Categoria de Risco"/>
+				 	</div>
+				  </div>
+				  
+				  <div class="form-group" th:classappend="${#fields.hasErrors('danoPotencial')} ? 'has-error'">
+				 	<label for="danoPotencial" class="col-sm-2 control-label">Dano Potencial</label>
+				 	<div class="col-sm-4">
+					    <input  id="danoPotencial" th:field="*{danoPotencial}" type="text" class="form-control" placeholder="Dano Potencial"/>
+				 	</div>
+				  </div>
+				  
+				   <div class="form-group" th:classappend="${#fields.hasErrors('consideracoes')} ? 'has-error'">
+				 	<label for="consideracoes" class="col-sm-2 control-label">Consideracoes</label>
+				 	<div class="col-sm-4">
+					    <input  id="consideracoes" th:field="*{consideracoes}" type="text" class="form-control" placeholder="Consideracoes"/>
+				 	</div>
+				  </div>
+				  
+				  
+				 	<label for="barragem" class="col-sm-2 control-label">Barragens</label>
+				 	<div class="col-sm-4">
+					    <select name="barragem" class="form-control" th:field="*{barragem}">
+					    	<option th:each="item : ${listaBarragens}" th:value="${item.id}"  th:text="${item.nome}" ></option>
+					    </select>
+				 	</div>
+				  </div>
+				  
+				  <div class="form-group">
+				 	<div class="col-sm-offset-2 col-sm-10">
+					    <button type="submit" class="btn btn-primary">Salvar</button>
+				 	</div>
+				  </div>
+		  </div>
+	</form>
+
+</section>
+</html>

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.puc.tcc.model.Barragem;
 import br.com.puc.tcc.repository.BarragemRepository;
+import br.com.puc.tcc.repository.filtro.BarragemFiltro;
 import br.com.puc.tcc.service.exception.ServiceException;
 
 @Service
@@ -23,13 +24,6 @@ public class BarragemService {
 	}	
 	
 	public Barragem salvar(Barragem barragem) {
-		if(barragem.getId() != null) {
-			Optional<Barragem> a = barragemRepository.findById(barragem.getId());
-			
-			if(a.isPresent()) {
-				throw new ServiceException("O Ativo já existe.");
-			}
-		}
 		return barragemRepository.save(barragem);
 	}
 	
@@ -39,15 +33,21 @@ public class BarragemService {
 		if(barragem.isPresent()) {
 			return barragem.get();
 		}
-		throw new ServiceException("O Ativo não pôde ser encontrado.");
+		throw new ServiceException("A Barragem não pôde ser encontrado.");
 	}
 	
 	public void deletar(Long id) {
 		try {
 			barragemRepository.deleteById(id);
 		} catch (EmptyResultDataAccessException e) {
-			throw new ServiceException("O livro não pôde ser encontrado.");
+			throw new ServiceException("A Barragem não pôde ser encontrado.");
 		}
+	}
+	
+	public List<Barragem> pesquisar(BarragemFiltro filtro){
+		String descricao =  filtro.getDescricao() == null ?"%":filtro.getDescricao();
+		return barragemRepository.findByNomeContaining(descricao);
+		
 	}
 	
 	public void atualizar(Barragem barragem) {

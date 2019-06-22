@@ -9,7 +9,7 @@
 	
 	<section layout:fragment="conteudo">
     
-	    <form class="form-signin" method="post" th:action="@{/registration}" th:object="${userForm}">
+	    <form class="form-horizontal" method="post" th:action="@{/registration}" th:object="${userForm}">
 		    <div class="alert alert-danger" th:if="${#fields.hasAnyErrors()}">
 				<div th:each="item :${#fields.detailedErrors()}">
 					<span th:text="${item.message}"></span>
@@ -18,9 +18,8 @@
 		    
 		    <div class="panel panel-default">
 				  <div class="panel-heading">
-				  
 					  <div class="clearfix">
-					    <h3 class="panel-title titulo-panel">Create your account</h3>
+					    <h3 class="panel-title titulo-panel">Cadastro de Usuario</h3>
 					  </div>
 				  </div>
 				  <div class="panel-body">

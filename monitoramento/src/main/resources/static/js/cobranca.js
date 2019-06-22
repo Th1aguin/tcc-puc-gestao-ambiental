@@ -2,15 +2,30 @@ $('#modalDelete').on('shown.bs.modal', function (e) {
   
 	button = $(e.relatedTarget)
 	
-	codigo = button.data('codigo')
+	codigo = button.data('id')
 	desc = button.data('descricao')
+	loc = button.data('loc')
 	
 	modal = $(this)
 	form = modal.find('form')
-	action = form.attr('action')
-	form.attr('action',action+codigo)
+	form.attr('action',loc+codigo)
 	
-	modal.find('.modal-body span').html('Tem certeza que deseja excluir o título ' +desc +' ? ')
+	modal.find('.modal-body span').html('Tem certeza que deseja excluir ' +desc +' ? ')
+})
+
+$('#modalPanico').on('shown.bs.modal', function (e) {
+  
+	button = $(e.relatedTarget)
+	
+	codigo = button.data('id')
+	desc = button.data('descricao')
+	loc = button.data('loc')
+	
+	modal = $(this)
+	form = modal.find('form')
+	form.attr('action',loc+codigo)
+	
+	modal.find('.modal-body h4').html('Tem certeza que deseja disparar o procedimento de evacuação para a barragem  ' +desc +'?*')
 })
 
 $(function(){

@@ -18,51 +18,34 @@
 		  <div class="panel-heading">
 		  
 			  <div class="clearfix">
-			    <h3 class="panel-title titulo-panel">Pesquisa</h3>
-			    <a class="btn btn-link titulo-link" th:href="@{/titulos/novo}">Novo titulo</a>
+			    <h3 class="panel-title titulo-panel">Monitoramento</h3>
+			    <a class="btn btn-danger titulo-right" data-toggle="modal" th:attr="data-id=1, data-loc=@{/evacuacao/}, data-descricao=nome"
+			     data-target="#modalPanico">Evacuação</a>
 			  </div>
 		  </div>
 		  <div class="panel-body">
-		   
-		   		<form method="GET" class="form-horizontal" >
-		   			<div class="form-group">
-		   				<div class="col-sm-4">
-		   					<div class="input-group">
-		   						<input class="form-control" placeholder="Digite o titulo" autofocus="autofocus"/> 
-		   						<span class="input-group-btn">
-		   							<button type="submit" class="btn btn-default">
-		   								<i class="glyphicon glyphicon-search"></i>
-		   							</button>
-		   						</span>
-		   					</div>
-		   				
-		   				</div>
-		   			</div>
-		   			
-		   		</form>
-		   		<div class="table-responsive">
-		   		
-					<table class="table table-bordered table-striped">
-						<thead>
-							<tr>
-								<th class="text-center col-md-1">#</th>
-								<th>Descrição</th>
-								<th class="text-center col-md-2" >Data</th>
-								<th class="text-center col-md-2">Valor</th>
-								<th class="text-center col-md-2">Status</th>
-								<th class="col-md-1"></th>
-							</tr>
-						</thead>
-						<tbody>
-							
-							<tr>
-								<td colspan="6">Nenhum titulo foi encontrado</td>
-							</tr>
-						</tbody>
-					</table>
+		   		<div class="container">
+					<div class="chart-container">
+						<canvas id="chart1"></canvas>
+					</div>
+					<div class="chart-container">
+						<canvas id="chart2"></canvas>
+					</div>
+					<div class="chart-container">
+						<canvas id="chart3"></canvas>
+					</div>
+					<div class="chart-container">
+						<canvas id="chart4"></canvas>
+					</div>
+					<div class="chart-container">
+						<canvas id="chart5"></canvas>
+					</div>			
 				</div>
+		   		
 		  </div>
 		  
 		</div>
+		
+		<div layout:insert="modal"></div>
 	</section>
 </html>

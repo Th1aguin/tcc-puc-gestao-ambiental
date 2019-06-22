@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="LayoutPadrao">
+<head>
+	<title>Cadastro Barragem</title>
+</head>
+	
+	<section layout:fragment="conteudo">
+	
+	
+	<form class="form-horizontal" method="post" th:action="@{/dam}" th:object="${barragem}">
+	
+		<div class="alert alert-success alert-dismissible" th:if="${!#strings.isEmpty(mensagem)}" role="alert">
+		  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		  <span th:text="${mensagem}"></span>
+		</div>
+		
+		<div class="alert alert-danger" th:if="${#fields.hasAnyErrors()}">
+			<div th:each="item :${#fields.detailedErrors()}">
+				<span th:text="${item.message}"></span>
+			</div>
+		</div>
+	
+		<div class="panel panel-default">
+		  <div class="panel-heading">
+		    <div class="clearfix">
+			    <h3 class="panel-title titulo-panel">Cadastro Barragem</h3>
+			    <a class="btn btn-link titulo-link" th:href="@{/dam}">Lista Barragem</a>
+			  </div>
+		  </div>
+		  <div class="panel-body">
+		  
+		  		<input type="hidden" th:field="*{id}" />
+		   
+				 <div class="form-group" th:classappend="${#fields.hasErrors('nome')} ? 'has-error'">
+				 	<label for="nome" class="col-sm-2 control-label">Nome</label>
+				 	<div class="col-sm-4">
+					    <input  id="nome" th:field="*{nome}" type="text" class="form-control" placeholder="Nome"/>
+				 	</div>
+				  </div>
+				  
+				  <div class="form-group" th:classappend="${#fields.hasErrors('latitude')} ? 'has-error'">
+				 	<label for="latitude" class="col-sm-2 control-label">Latitude</label>
+				 	<div class="col-sm-4">
+					    <input  id="latitude" th:field="*{latitude}" type="text" class="form-control" placeholder="Latitude"/>
+				 	</div>
+				  </div>
+				  
+				  <div class="form-group" th:classappend="${#fields.hasErrors('longitude')} ? 'has-error'">
+				 	<label for="longitude" class="col-sm-2 control-label">Longitude</label>
+				 	<div class="col-sm-4">
+					    <input  id="longitude" th:field="*{longitude}" type="text" class="form-control" placeholder="Longitude"/>
+				 	</div>
+				  </div>
+				  
+				   <div class="form-group" th:classappend="${#fields.hasErrors('minerio')} ? 'has-error'">
+				 	<label for="minerio" class="col-sm-2 control-label">Principal Minério</label>
+				 	<div class="col-sm-4">
+					    <input  id="minerio" th:field="*{minerio}" type="text" class="form-control" placeholder="Principal Minério"/>
+				 	</div>
+				  </div>
+				  
+				  
+				 	<label for="metodo" class="col-sm-2 control-label">Metodo</label>
+				 	<div class="col-sm-4">
+					    <select name="metodo" class="form-control" th:field="*{metodo}">
+					    	<option th:each="item : ${listaStatus}" th:value="${item}"  th:text="${item.descricao}" ></option>
+					    </select>
+				 	</div>
+				  </div>
+				  
+				  <div class="form-group">
+				 	<div class="col-sm-offset-2 col-sm-10">
+					    <button type="submit" class="btn btn-primary">Salvar</button>
+				 	</div>
+				  </div>
+		  </div>
+		</div>
+	</form>
+
+</section>
+</html>

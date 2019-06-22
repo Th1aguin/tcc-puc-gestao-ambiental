@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="LayoutPadrao">
+<head>
+	<title>Pesquisa Barragem</title>
+</head>
+	
+	<section layout:fragment="conteudo">
+		
+		<div class="alert alert-success alert-dismissible" th:if="${!#strings.isEmpty(mensagem)}" role="alert">
+		  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		  <span th:text="${mensagem}"></span>
+		</div>
+	
+		<div class="panel panel-default">
+		  <div class="panel-heading">
+		  
+			  <div class="clearfix">
+			    <h3 class="panel-title titulo-panel">Pesquisa Barragem</h3>
+			    <a class="btn btn-link titulo-link" th:href="@{/dam/novo}">Nova Barragem</a>
+			  </div>
+		  </div>
+		  <div class="panel-body">
+		   
+		   		<form method="GET" class="form-horizontal" th:object="${filtro}">
+		   			<div class="form-group">
+		   				<div class="col-sm-4">
+		   					<div class="input-group">
+		   						<input class="form-control" th:field="*{descricao}" placeholder="Digite o titulo" autofocus="autofocus"/> 
+		   						<span class="input-group-btn">
+		   							<button type="submit" class="btn btn-default">
+		   								<i class="glyphicon glyphicon-search"></i>
+		   							</button>
+		   						</span>
+		   					</div>
+		   				
+		   				</div>
+		   			</div>
+		   			
+		   		</form>
+		   		<div class="table-responsive">
+		   		
+					<table class="table table-bordered table-striped">
+						<thead>
+							<tr>
+								<th class="text-center col-md-1">#</th>
+								<th>Descrição</th>
+								<th class="text-center col-md-2" >Minério</th>
+								<th class="text-center col-md-2">Latitude</th>
+								<th class="text-center col-md-2">Longitude</th>
+								<th class="text-center col-md-2">Metodo</th>
+								<th class="col-md-1"></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="item : ${barragens}">
+								<td class="text-center" th:text="${item.id}">1</td>
+								<td th:text="${item.nome}">1</td>
+								<td class="text-center" th:text="${item.minerio}">1</td>
+								<td class="text-center" th:text="${item.latitude}">1</td>
+								<td class="text-center" th:text="${item.longitude}">1</td>
+								<td class="text-center" th:text="${item.metodo.descricao}">1</td>
+								<td class="text-center" >
+									 <a class="btn btn-link btn-xs" th:href="@{/dam/{id}(id=${item.id})}" 
+									 	title="Editar" rel="tooltip" data-toggle="tooltip" data-placement="top">
+									 	<span class="glyphicon glyphicon-pencil"></span>
+									 </a>
+									  <a class="btn btn-link btn-xs" data-toggle="modal" th:attr="data-id=${item.id}, data-loc=@{/dam/}, data-descricao=${item.nome}"
+									  	title="Excluir" rel="tooltip" data-placement="top" data-target="#modalDelete">
+									 	<span class="glyphicon glyphicon-remove"></span>
+									 </a>
+									 <a class="btn btn-link btn-xs" data-toggle="modal" th:attr="data-id=${item.id}, data-loc=@{/evacuacao/}, data-descricao=${item.nome}"
+									  	title="Evacuação" rel="tooltip" data-placement="top" data-target="#modalPanico">
+									 	<span class="glyphicon glyphicon-fire"></span>
+									 </a>
+								</td>
+								
+							</tr>
+							<tr th:if="${#lists.isEmpty(barragens)}">
+								<td colspan="6">Nenhuma barragem foi encontrada</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+		  </div>
+		  
+		  	<div layout:insert="modal"></div>
+		</div>
+	</section>
+</html>

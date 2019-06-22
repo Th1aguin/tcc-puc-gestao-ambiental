@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	
+	
+
+<div class="modal fade" id="modalDelete" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      
+      <form th:action="@{/dam/}" method="POST">
+		  <input type="hidden" name="_method" value="DELETE"/>
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title">Excluir</h4>
+	      </div>
+	      <div class="modal-body">
+	        <span>Tem certeza que deseja excluir esse item?</span>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+	        <button type="submit" class="btn btn-primary">Excluir</button>
+	      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="modalPanico" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      
+      <form th:action="@{/evacuacao/}" method="POST">
+		  <input type="hidden" name="usuario" value="${#request.userPrincipal.name}"/>
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h2 class="modal-title">Procedimento de Evacuação</h2>
+	      </div>
+	      <div class="modal-body">
+	        <h4>Tem certeza que deseja disparar o procedimento de evacuação para a barragem ?</h4>
+	        <p></p>
+	        <p>*Todas as pessoas que moram na proximidade serão alertadas, junto com Defesa Civil e autoridades responsaveis</p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+	        <button type="submit" class="btn btn-primary">Disparar</button>
+	      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+</html>
