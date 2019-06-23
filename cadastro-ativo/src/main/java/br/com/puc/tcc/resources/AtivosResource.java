@@ -81,6 +81,12 @@ public class AtivosResource {
 		
 		return ResponseEntity.created(uri).build();
 	}
+	
+	@RequestMapping(value = "/{id}/solicitacao", method = RequestMethod.GET)
+	public ResponseEntity<List<Solicitacao>> buscarSolicitacao(@PathVariable("id") Long id) {
+		List<Solicitacao> lista = solicitacaoService.listarPorBarragem(id);
+		return ResponseEntity.status(HttpStatus.OK).body(lista);
+	}
 
 	@RequestMapping(value = "/{id}/solicitacao/{idSolicitacao}", method = RequestMethod.PUT)
 	public ResponseEntity<Void> atualizarSolicitacao(@RequestBody Solicitacao solicitacao, 

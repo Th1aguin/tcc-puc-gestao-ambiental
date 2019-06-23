@@ -24,6 +24,10 @@ public class SolicitacaoService {
 		return solicitacaoRepository.findAll();
 	}	
 	
+	public List<Solicitacao> listarPorBarragem(Long id) {
+		return solicitacaoRepository.findByAtivo_Codigo(id);
+	}	
+	
 	public Solicitacao salvar(Solicitacao s) {
 		s.setDataSolicitacao(new Date());
 		s.setStatus(StatusEnum.ABERTA);

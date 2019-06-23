@@ -1,6 +1,5 @@
 package br.com.puc.tcc.controller;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +15,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.puc.tcc.model.Barragem;
 import br.com.puc.tcc.model.Inspecao;
-import br.com.puc.tcc.model.MetodoEnum;
 import br.com.puc.tcc.repository.filtro.InspecaoFiltro;
 import br.com.puc.tcc.service.InspecaoService;
 import br.com.puc.tcc.service.BarragemService;
