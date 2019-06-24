@@ -25,15 +25,6 @@
 	float:right;
 }
 
-.chart-container {
-	width: 500px;
-	margin-left: 40px;
-	margin-right: 40px;
-	margin-bottom: 40px;
-}
-.container {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	justify-content: center;
+.color-default{
+	background: #4CAF50;
 }

@@ -1,5 +1,6 @@
 package br.com.puc.tcc.controller;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.puc.tcc.model.Barragem;
 import br.com.puc.tcc.model.Inspecao;
+import br.com.puc.tcc.model.MetodoEnum;
+import br.com.puc.tcc.model.NivelEnum;
 import br.com.puc.tcc.repository.filtro.InspecaoFiltro;
 import br.com.puc.tcc.service.InspecaoService;
 import br.com.puc.tcc.service.BarragemService;
@@ -82,5 +85,10 @@ public class InspecaoControler {
 	@ModelAttribute("listaBarragens")
 	public List<Barragem> todasBarragens(){
 		return barragemService.listar();
+	}
+	
+	@ModelAttribute("listaStatus")
+	public List<NivelEnum> todosStatusTitulo(){
+		return Arrays.asList(NivelEnum.values());
 	}
 }

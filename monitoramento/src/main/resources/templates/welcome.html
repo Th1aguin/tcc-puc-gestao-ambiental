@@ -19,25 +19,34 @@
 		  
 			  <div class="clearfix">
 			    <h3 class="panel-title titulo-panel">Monitoramento</h3>
+			    <div class="form-group">
+		   			<div class="col-sm-4">
+					    <form method="GET" class="form-horizontal" th:object="${filtro}">
+						    <select name="id" class="form-control" th:field="*{id}">
+						    	<option th:each="item : ${listaBarragens}" th:value="${item.id}"  th:text="${item.nome}" ></option>
+						    </select>
+					    </form>
+			    	</div>
+			    </div>
 			    <a class="btn btn-danger titulo-right" data-toggle="modal" th:attr="data-id=1, data-loc=@{/evacuacao/}, data-descricao=nome"
 			     data-target="#modalPanico">Evacuação</a>
 			  </div>
 		  </div>
 		  <div class="panel-body">
-		   		<div class="container">
-					<div class="chart-container">
+		   		<div class="row">
+					<div class="chart-container col-md-6 col-xl-4">
 						<canvas id="chart1"></canvas>
 					</div>
-					<div class="chart-container">
+					<div class="chart-container col-md-6 col-xl-4">
 						<canvas id="chart2"></canvas>
 					</div>
-					<div class="chart-container">
+					<div class="chart-container col-md-6 col-xl-4">
 						<canvas id="chart3"></canvas>
 					</div>
-					<div class="chart-container">
+					<div class="chart-container col-md-6 col-xl-4">
 						<canvas id="chart4"></canvas>
 					</div>
-					<div class="chart-container">
+					<div class="chart-container col-md-6 col-xl-4">
 						<canvas id="chart5"></canvas>
 					</div>			
 				</div>

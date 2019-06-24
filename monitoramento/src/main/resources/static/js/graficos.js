@@ -3,8 +3,8 @@ function randomNumber(min, max) {
 		}
 
 		function randomBar(date, lastClose) {
-			var open = randomNumber(lastClose * 0.95, lastClose * 1.05).toFixed(2);
-			var close = randomNumber(open * 0.95, open * 1.05).toFixed(2);
+			var open = randomNumber(lastClose * 0.99, lastClose * 1.01).toFixed(2);
+			var close = randomNumber(open * 0.99, open * 1.01).toFixed(2);
 			return {
 				t: date.valueOf(),
 				y: close
@@ -84,21 +84,21 @@ function randomNumber(min, max) {
 		var color = Chart.helpers.color;
 
 		var dados = makeData(60,30)
-		var cfg = makeConfig(dados,'Temperatura ', 'indice', window.chartColors.red)
+		var cfg = makeConfig(dados,'Temperatura ', 'Graus', window.chartColors.red)
 		var chart = new Chart(ctx, cfg);
 
-		var dados2 = makeData(60,30)
-		var cfg2 = makeConfig(dados2,'Nivel agua', 'indice', window.chartColors.blue)
+		var dados2 = makeData(60,300000)
+		var cfg2 = makeConfig(dados2,'Volume agua', 'm3', window.chartColors.blue)
 		var chart2 = new Chart(ctx2, cfg2);
 
-		var dados3 = makeData(60,30)
-		var cfg3 = makeConfig(dados3,'Movimentação', 'indice', window.chartColors.green)
+		var dados3 = makeData(60,0)
+		var cfg3 = makeConfig(dados3,'Movimentação', 'cm', window.chartColors.green)
 		var chart3 = new Chart(ctx3, cfg3);
 
-		var dados4 = makeData(60,30)
-		var cfg4 = makeConfig(dados4,'Inclinometro', 'indice', window.chartColors.yellow)
+		var dados4 = makeData(60,1)
+		var cfg4 = makeConfig(dados4,'Inclinometro', 'cm', window.chartColors.yellow)
 		var chart4 = new Chart(ctx4, cfg4);
 
-		var dados5 = makeData(60,30)
-		var cfg5 = makeConfig(dados5,'Pressào da agua', 'indice', window.chartColors.purple)
+		var dados5 = makeData(60,10000)
+		var cfg5 = makeConfig(dados5,'Pressào da agua', 'kgf/cm', window.chartColors.purple)
 		var chart5 = new Chart(ctx5, cfg5);

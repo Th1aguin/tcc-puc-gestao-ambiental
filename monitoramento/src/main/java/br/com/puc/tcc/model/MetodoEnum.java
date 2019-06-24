@@ -4,7 +4,7 @@ public enum MetodoEnum {
 
 	ETAPA_UNICA("Etapa única"),
 	ALTEAMENTO_JUSANTE("Alteamento a jusante"),
-	ALTEAMENTO_MONTANTE("Alteamento a montante ou desconhecido"),
+	ALTEAMENTO_MONTANTE("Alteamento a montante"),
 	DESCONHECIDO("Desconhecido");
 	
 	private String descricao;

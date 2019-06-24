@@ -4,7 +4,7 @@
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	  layout:decorator="LayoutPadrao">
 <head>
-	<title>Cadastro Inspecao</title>
+	<title>Cadastro Inspeção</title>
 </head>
 	
 	<section layout:fragment="conteudo">
@@ -26,14 +26,37 @@
 		<div class="panel panel-default">
 		  <div class="panel-heading">
 		    <div class="clearfix">
-			    <h3 class="panel-title titulo-panel">Cadastro Inspecao</h3>
-			    <a class="btn btn-link titulo-link" th:href="@{/inspect}">Lista Inspecao</a>
+			    <h3 class="panel-title titulo-panel">Cadastro Inspeção</h3>
+			    <a class="btn btn-link titulo-link" th:href="@{/inspect}">Lista Inspeção</a>
 			  </div>
 		  </div>
 		  <div class="panel-body">
 		  
 		  		<input type="hidden" th:field="*{id}" />
 		   
+		   		<div class="form-group" th:classappend="${#fields.hasErrors('altura')} ? 'has-error'">
+		   			<label for="barragem" class="col-sm-2 control-label">Barragens</label>
+				 	<div class="col-sm-4">
+					    <select name="barragem" class="form-control" th:field="*{barragem}">
+					    	<option th:each="item : ${listaBarragens}" th:value="${item.id}"  th:text="${item.nome}" ></option>
+					    </select>
+				 	</div>
+				 </div>
+				 	
+				 <div class="form-group" th:classappend="${#fields.hasErrors('altura')} ? 'has-error'">
+				 	<label for="altura" class="col-sm-2 control-label">Altura Atual</label>
+				 	<div class="col-sm-4">
+					    <input  id="altura" th:field="*{altura}" type="text" class="form-control" placeholder="Altura Atual"/>
+				 	</div>
+				  </div>
+				  
+				  <div class="form-group" th:classappend="${#fields.hasErrors('volume')} ? 'has-error'">
+				 	<label for="volume" class="col-sm-2 control-label">Volume Atual</label>
+				 	<div class="col-sm-4">
+					    <input  id="volume" th:field="*{volume}" type="text" class="form-control" placeholder="Volume Atual"/>
+				 	</div>
+				  </div>
+		   		
 				 <div class="form-group" th:classappend="${#fields.hasErrors('data')} ? 'has-error'">
 				 	<label for="data" class="col-sm-2 control-label">Data</label>
 				 	<div class="col-sm-4">
@@ -46,14 +69,20 @@
 				  <div class="form-group" th:classappend="${#fields.hasErrors('categoriaRisco')} ? 'has-error'">
 				 	<label for="categoriaRisco" class="col-sm-2 control-label">Categoria de Risco</label>
 				 	<div class="col-sm-4">
-					    <input  id="categoriaRisco" th:field="*{categoriaRisco}" type="text" class="form-control" placeholder="Categoria de Risco"/>
+					    <select name="categoriaRisco" class="form-control" th:field="*{categoriaRisco}">
+					    	<option value="">Selecione</option>
+					    	<option th:each="item : ${listaStatus}" th:value="${item}"  th:text="${item.descricao}" ></option>
+					    </select>
 				 	</div>
 				  </div>
 				  
 				  <div class="form-group" th:classappend="${#fields.hasErrors('danoPotencial')} ? 'has-error'">
 				 	<label for="danoPotencial" class="col-sm-2 control-label">Dano Potencial</label>
 				 	<div class="col-sm-4">
-					    <input  id="danoPotencial" th:field="*{danoPotencial}" type="text" class="form-control" placeholder="Dano Potencial"/>
+				 		<select name="danoPotencial" class="form-control" th:field="*{danoPotencial}">
+				 			<option value="">Selecione</option>
+					    	<option th:each="item : ${listaStatus}" th:value="${item}"  th:text="${item.descricao}" ></option>
+					    </select>
 				 	</div>
 				  </div>
 				  
@@ -65,12 +94,7 @@
 				  </div>
 				  
 				  
-				 	<label for="barragem" class="col-sm-2 control-label">Barragens</label>
-				 	<div class="col-sm-4">
-					    <select name="barragem" class="form-control" th:field="*{barragem}">
-					    	<option th:each="item : ${listaBarragens}" th:value="${item.id}"  th:text="${item.nome}" ></option>
-					    </select>
-				 	</div>
+				 	
 				  </div>
 				  
 				  <div class="form-group">

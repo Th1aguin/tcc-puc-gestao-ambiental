@@ -3,6 +3,8 @@ package br.com.puc.tcc.model;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,11 +32,22 @@ public class Inspecao {
 	  (shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	private Date data;
 	
-	private String categoriaRisco;
+	@Enumerated(EnumType.STRING)
+	@NotNull(message="Categoria de Risco obrigatória")
+	private NivelEnum categoriaRisco;
 	
-	private String danoPotencial;
+	@Enumerated(EnumType.STRING)
+	@NotNull(message="Dano Potenciao obrigatório")
+	private NivelEnum danoPotencial;
 	
+	@NotNull(message="Considerações obrigatória")
 	private String consideracoes;
+	
+	@NotNull(message="Altura obrigatória")
+	private Double altura;
+	
+	@NotNull(message="Volume obrigatório")
+	private Double volume;
 	
 	@ManyToOne
 	@JoinColumn(name = "barragem_id")
@@ -56,11 +69,11 @@ public class Inspecao {
 		this.data = data;
 	}
 
-	public String getCategoriaRisco() {
+	public NivelEnum getCategoriaRisco() {
 		return categoriaRisco;
 	}
 
-	public void setCategoriaRisco(String categoriaRisco) {
+	public void setCategoriaRisco(NivelEnum categoriaRisco) {
 		this.categoriaRisco = categoriaRisco;
 	}
 
@@ -72,11 +85,11 @@ public class Inspecao {
 		this.consideracoes = consideracoes;
 	}
 
-	public String getDanoPotencial() {
+	public NivelEnum getDanoPotencial() {
 		return danoPotencial;
 	}
 
-	public void setDanoPotencial(String danoPotencial) {
+	public void setDanoPotencial(NivelEnum danoPotencial) {
 		this.danoPotencial = danoPotencial;
 	}
 
@@ -86,6 +99,22 @@ public class Inspecao {
 
 	public void setBarragem(Barragem barragem) {
 		this.barragem = barragem;
+	}
+
+	public Double getAltura() {
+		return altura;
+	}
+
+	public void setAltura(Double altura) {
+		this.altura = altura;
+	}
+
+	public Double getVolume() {
+		return volume;
+	}
+
+	public void setVolume(Double volume) {
+		this.volume = volume;
 	}
 
 	@Override
