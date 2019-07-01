@@ -4,12 +4,18 @@
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	  layout:decorator="LayoutPadrao">
 <head>
-	<title>Pesquisa Titulo</title>
+	<title>Cadastro de Usuário</title>
 </head>
 	
 	<section layout:fragment="conteudo">
     
-	    <form class="form-horizontal" method="post" th:action="@{/registration}" th:object="${userForm}">
+	    <form class="form-horizontal" method="post" th:action="@{/registration}" th:object="${user}">
+		    
+		    <div class="alert alert-success alert-dismissible" th:if="${!#strings.isEmpty(mensagem)}" role="alert">
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			  <span th:text="${mensagem}"></span>
+			</div>
+		    
 		    <div class="alert alert-danger" th:if="${#fields.hasAnyErrors()}">
 				<div th:each="item :${#fields.detailedErrors()}">
 					<span th:text="${item.message}"></span>
@@ -19,7 +25,8 @@
 		    <div class="panel panel-default">
 				  <div class="panel-heading">
 					  <div class="clearfix">
-					    <h3 class="panel-title titulo-panel">Cadastro de Usuario</h3>
+					    <h3 class="panel-title titulo-panel">Cadastro de Usuário</h3>
+					    <a class="btn btn-link titulo-link" th:href="@{/registration}">Lista Usuário</a>
 					  </div>
 				  </div>
 				  <div class="panel-body">
@@ -42,6 +49,15 @@
 						 	<label for="passwordConfirm" class="col-sm-2 control-label">Confirme a Senha</label>
 						 	<div class="col-sm-4">
 							    <input  id="passwordConfirm" th:field="*{passwordConfirm}" type="password" class="form-control" placeholder="Confirme a Senha"/>
+						 	</div>
+						  </div>
+						  
+						  <div class="form-group" th:classappend="${#fields.hasErrors('roles')} ? 'has-error'">
+						 	<label for="roles" class="col-sm-2 control-label">Role</label>
+						 	<div class="col-sm-4">
+							    <select name="roles" class="form-control" th:field="*{roles}" multiple="multiple">
+							    	<option th:each="item : ${listaRoles}" th:value="${item.id}"  th:text="${item.name}" ></option>
+							    </select>
 						 	</div>
 						  </div>
 			            

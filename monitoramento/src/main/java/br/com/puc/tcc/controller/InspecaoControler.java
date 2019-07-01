@@ -16,11 +16,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.puc.tcc.model.Barragem;
 import br.com.puc.tcc.model.Inspecao;
-import br.com.puc.tcc.model.MetodoEnum;
 import br.com.puc.tcc.model.NivelEnum;
 import br.com.puc.tcc.repository.filtro.InspecaoFiltro;
-import br.com.puc.tcc.service.InspecaoService;
 import br.com.puc.tcc.service.BarragemService;
+import br.com.puc.tcc.service.InspecaoService;
 
 
 @Controller

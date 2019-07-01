@@ -2,8 +2,11 @@ package br.com.puc.tcc.controller;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -33,7 +36,9 @@ public class MonitoramentoControler {
 	private BarragemService barragemService;
 	
 	@RequestMapping
-    public String welcome(@ModelAttribute("filtro")  InspecaoFiltro filtro) {
+    public String welcome(@ModelAttribute("filtro")  InspecaoFiltro filtro, Authentication authentication) {
+		
+		authentication.getAuthorities();
         return "welcome";
     }
 

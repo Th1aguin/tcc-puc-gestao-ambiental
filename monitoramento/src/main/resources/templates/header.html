@@ -19,7 +19,7 @@
 	     <div class="navbar-collapse collapse" id="navToogler">
             <ul class="nav navbar-nav">
               <li ><a href="/welcome">Home</a></li>
-              <li ><a href="/registration">Cadastro Usuario</a></li>
+              <li ><a sec:authorize="hasAuthority('ADMIN')" href="/registration">Usuário</a></li>
               <li ><a href="/dam">Barragem</a></li>
               <li ><a href="/inspect">Inspeção</a></li>
             </ul>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="LayoutPadrao">
+<head>
+	<title>Lista Usuário</title>
+</head>
+	
+	<section layout:fragment="conteudo">
+		
+		<div class="alert alert-success alert-dismissible" th:if="${!#strings.isEmpty(mensagem)}" role="alert">
+		  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		  <span th:text="${mensagem}"></span>
+		</div>
+	
+		<div class="panel panel-default">
+		  <div class="panel-heading">
+		  
+			  <div class="clearfix">
+			    <h3 class="panel-title titulo-panel">Lista Usuário</h3>
+			    <a class="btn btn-link titulo-link" th:href="@{/registration/novo}">Novo Usuário</a>
+			  </div>
+		  </div>
+		  <div class="panel-body">
+		   
+		   		<div class="table-responsive">
+		   		
+					<table class="table table-bordered table-striped">
+						<thead>
+							<tr>
+								<th class="text-center col-md-1">#</th>
+								<th>Usuario</th>
+								<th class="col-md-1"></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="item : ${usuarios}">
+								<td class="text-center" th:text="${item.id}">1</td>
+								<td class="text-center" th:text="${{item.username}}">1</td>
+								<td class="text-center" >
+									 <a class="btn btn-link btn-xs" th:href="@{/registration/{id}(id=${item.id})}" 
+									 	title="Editar" rel="tooltip" data-toggle="tooltip" data-placement="top">
+									 	<span class="glyphicon glyphicon-pencil"></span>
+									 </a>
+									 
+									  <a class="btn btn-link btn-xs" data-toggle="modal" th:attr="data-id=${item.id}, data-loc=@{/registration/}, data-descricao=${item.username}"
+									  	title="Excluir" rel="tooltip" data-placement="top" data-target="#modalDelete">
+									 	<span class="glyphicon glyphicon-remove"></span>
+									 </a>
+								</td>
+								
+							</tr>
+							<tr th:if="${#lists.isEmpty(usuarios)}">
+								<td colspan="6">Nenhum Usuário foi encontradp</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+		  </div>
+		  
+		  	<div layout:insert="modal"></div>
+		</div>
+	</section>
+</html>
