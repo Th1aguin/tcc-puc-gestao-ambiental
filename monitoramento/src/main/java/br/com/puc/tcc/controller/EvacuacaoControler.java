@@ -1,5 +1,6 @@
 package br.com.puc.tcc.controller;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,12 +20,15 @@ public class EvacuacaoControler {
 		return "Evacuacao";
 	}
 	
+	@Value("${endereco.ws.gateway}")
+    private String enderecoWs;
+	
 	@RequestMapping(value ="{codigo}", method =RequestMethod.POST)
     public String welcome(@PathVariable Long codigo, String usuario, RedirectAttributes attr) {
         
 		// todo 
 		ComunicacaoClient cliente = 
-				new ComunicacaoClient("http://localhost:5000", "algaworks", "s3nh4");
+				new ComunicacaoClient(enderecoWs, "puc", "S3nh4");
 		
 		Comunicacao comunicacao = new Comunicacao();
 		comunicacao.setBarragem(codigo);

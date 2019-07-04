@@ -28,7 +28,7 @@ public class PessoaResource {
 	private PessoaService service;
 	
 	@RequestMapping(method = RequestMethod.GET, produces = {
-			MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE
+			MediaType.APPLICATION_JSON_VALUE
 	})
 	public ResponseEntity<List<Pessoa>> listar() {
 		List<Pessoa> ativos = service.listar();

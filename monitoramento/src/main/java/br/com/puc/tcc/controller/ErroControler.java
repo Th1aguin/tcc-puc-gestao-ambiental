@@ -28,6 +28,9 @@ public class ErroControler implements ErrorController  {
 	        if(statusCode == HttpStatus.FORBIDDEN.value()) {
 	        	mv.addObject("mensagem","Não autorizado");
 	        }
+	        if(statusCode == HttpStatus.GATEWAY_TIMEOUT.value()) {
+	        	mv.addObject("mensagem","Gateway timeout");
+	        }
 	        else if(statusCode == HttpStatus.INTERNAL_SERVER_ERROR.value()) {
 	        	mv.addObject("mensagem","Erro no servidor tente novamente mais tarde");
 	        }

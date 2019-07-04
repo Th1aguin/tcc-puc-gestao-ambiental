@@ -14,7 +14,7 @@ public class ComunicacaoClient {
 	
 	private String URI_BASE;
 	
-	private String URN_BASE = "/comunicacao";
+	private String URN_BASE = "/seguranca/comunicacao";
 	
 	private String credencial;
 	
@@ -32,7 +32,7 @@ public class ComunicacaoClient {
 	public String salvar(Comunicacao comunicacao) {		
 		RequestEntity<Comunicacao> request = RequestEntity
 				.post(URI.create(URI_BASE))
-				//.header("Authorization", credencial)
+				.header("Authorization", credencial)
 				.body(comunicacao);
 		
 		ResponseEntity<Void> response = restTemplate.exchange(request, Void.class);

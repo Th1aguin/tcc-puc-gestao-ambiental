@@ -23,11 +23,10 @@ public class Comunicacao {
 	
 	private String usuario;
 	
-	@DateTimeFormat(pattern="dd/MM/yyyy")
-	@Temporal(TemporalType.DATE)
-	@NotNull(message="Data obrigatória")
+	@DateTimeFormat(pattern="dd/MM/yyyy HH:mm:ss")
+	@Temporal(TemporalType.TIMESTAMP)
 	@JsonFormat
-	  (shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+	  (shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")
 	private Date data;
 	
 	private Long barragem;
