@@ -33,4 +33,4 @@ O escopo escolhido para o TCC foi o de Sistema de Gestão Ambiental.
 
 ## Integração Contínua
 
-[![Build Status](https://travis-ci.org/Th1aguin/tcc-puc-gestao-ambiental)
+[![Build Status](https://travis-ci.org/Th1aguin/tcc-puc-gestao-ambiental.svg?branch=master)](https://travis-ci.org/Th1aguin/tcc-puc-gestao-ambiental)
