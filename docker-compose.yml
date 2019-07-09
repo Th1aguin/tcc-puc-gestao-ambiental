@@ -1,0 +1,67 @@
+version: '3'
+
+services:
+  
+  eureka:
+    image: th1aguin/eureka:latest
+    ports:
+      - "8761:8761"
+    restart: always
+    networks:
+      - backend
+
+  zull:
+    depends_on:
+      - eureka
+    image: th1aguin/zull:latest
+    ports:
+      - "8765:8765"
+    restart: always
+    environment:
+     EUREKA_URI: http://eureka:8761/eureka
+    networks:
+      - backend
+
+  seguranca-comunicacao:
+    depends_on:
+      - eureka
+    image: th1aguin/seguranca-comunicacao:latest
+    ports:
+      - "8060:8060"
+    restart: always
+    environment:
+     EUREKA_URI: http://eureka:8761/eureka
+    networks:
+      - backend
+
+  monitoramento-service:
+    depends_on:
+      - eureka
+    image: th1aguin/monitoramento-service:latest
+    ports:
+      - "8061:8061"
+    restart: always
+    environment:
+     EUREKA_URI: http://eureka:8761/eureka
+    networks:
+      - backend
+
+  monitoramento:
+    depends_on:
+      - eureka
+      - zull
+      - seguranca-comunicacao
+      - monitoramento-service
+    image: th1aguin/monitoramento:latest
+    ports:
+      - "8080:8080"
+    restart: always
+    environment:
+     WS_SEGURANCA: http://zull:8765/api
+    networks:
+      - backend
+
+### Networks Setup ############################################
+networks:
+  backend:
+    driver: "bridge"
