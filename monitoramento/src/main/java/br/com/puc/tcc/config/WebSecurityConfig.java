@@ -29,6 +29,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .authorizeRequests()
             	.requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
             	.antMatchers("/registration/**").hasAuthority("ADMIN")
+            	.antMatchers("/dam/**").hasAuthority("ENGENHEIRO")
+            	.antMatchers("/inspect/**").hasAuthority("CONSULTOR")
                 .antMatchers("/h2-console/**").permitAll()
                 .anyRequest().authenticated()
                 .and()

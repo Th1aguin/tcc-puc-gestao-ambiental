@@ -22,7 +22,7 @@
 			    <div class="form-group">
 		   			<div class="col-sm-4">
 					    <form method="GET" class="form-horizontal" th:object="${filtro}">
-						    <select name="id" class="form-control" th:field="*{id}">
+						    <select disabled name="id" class="form-control" th:field="*{id}">
 						    	<option th:each="item : ${listaBarragens}" th:value="${item.id}"  th:text="${item.nome}" ></option>
 						    </select>
 					    </form>

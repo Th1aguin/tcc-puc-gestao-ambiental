@@ -12,8 +12,11 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+@Entity
 public class Barragem {
 
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)//banco gera pra gente
 	private Long id;
 	
 	private String nome;
@@ -27,6 +30,8 @@ public class Barragem {
 	@Enumerated(EnumType.STRING)
 	private MetodoEnum metodo;
 	
+	@OneToMany(mappedBy = "barragem")
+	@JsonIgnore
 	private List<Inspecao> solicitacoes;
 
 	public Long getId() {

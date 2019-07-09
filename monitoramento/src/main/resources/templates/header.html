@@ -20,8 +20,8 @@
             <ul class="nav navbar-nav">
               <li ><a href="/welcome">Home</a></li>
               <li ><a sec:authorize="hasAuthority('ADMIN')" href="/registration">Usuário</a></li>
-              <li ><a href="/dam">Barragem</a></li>
-              <li ><a href="/inspect">Inspeção</a></li>
+              <li ><a sec:authorize="hasAuthority('ENGENHEIRO')" href="/dam">Barragem</a></li>
+              <li ><a sec:authorize="hasAuthority('CONSULTOR')" href="/inspect">Inspeção</a></li>
             </ul>
             <ul th:if="${#request.userPrincipal}"  class="nav navbar-nav navbar-right">
 		        <li><a th:text="${'Ola ' + #request.userPrincipal.name}" href="#" role="menuitem"> Logout</a></li>

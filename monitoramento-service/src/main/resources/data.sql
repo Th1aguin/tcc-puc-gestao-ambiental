@@ -1,0 +1,2 @@
+insert into barragem (nome,latitude,longitude,minerio,metodo) values('Barragem 01','15.456123','-15.123456','Areia','ETAPA_UNICA' );
+insert into inspecao (altura,categoria_risco,consideracoes, dano_potencial,data,volume,barragem_id) values('22.5','BAIXO','apto','ALTO','2019-07-08','3000',1);

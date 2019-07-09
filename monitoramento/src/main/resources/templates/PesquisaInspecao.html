@@ -29,6 +29,7 @@
 		   				<div class="col-sm-4">
 		   					<div class="input-group">
 		   						<select name="id" class="form-control" th:field="*{id}">
+		   							<option value="">Selecione a Barragem</option>
 							    	<option th:each="item : ${listaBarragens}" th:value="${item.id}"  th:text="${item.nome}" ></option>
 							    </select>
 		   						<span class="input-group-btn">

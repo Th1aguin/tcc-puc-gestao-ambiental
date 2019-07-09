@@ -23,12 +23,18 @@ public class EvacuacaoControler {
 	@Value("${endereco.ws.gateway}")
     private String enderecoWs;
 	
+	@Value("${endereco.ws.user}")
+    private String user;
+	
+	@Value("${endereco.ws.password}")
+    private String password;
+	
 	@RequestMapping(value ="{codigo}", method =RequestMethod.POST)
     public String welcome(@PathVariable Long codigo, String usuario, RedirectAttributes attr) {
         
 		// todo 
 		ComunicacaoClient cliente = 
-				new ComunicacaoClient(enderecoWs, "puc", "S3nh4");
+				new ComunicacaoClient(enderecoWs, user, password);
 		
 		Comunicacao comunicacao = new Comunicacao();
 		comunicacao.setBarragem(codigo);

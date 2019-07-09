@@ -18,13 +18,19 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+@Entity
 public class Inspecao {
 
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)//banco gera pra gente
 	private Long id;
 	
 	@DateTimeFormat(pattern="dd/MM/yyyy")
+	@Temporal(TemporalType.DATE)
 	@NotNull(message="Data obrigatória")
-	private String data;
+	@JsonFormat
+	  (shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+	private Date data;
 	
 	@Enumerated(EnumType.STRING)
 	@NotNull(message="Categoria de Risco obrigatória")
@@ -43,6 +49,8 @@ public class Inspecao {
 	@NotNull(message="Volume obrigatório")
 	private Double volume;
 	
+	@ManyToOne
+	@JoinColumn(name = "barragem_id")
 	private Barragem barragem;
 
 	public Long getId() {
@@ -53,11 +61,11 @@ public class Inspecao {
 		this.id = id;
 	}
 
-	public String getData() {
+	public Date getData() {
 		return data;
 	}
 
-	public void setData(String data) {
+	public void setData(Date data) {
 		this.data = data;
 	}
 
