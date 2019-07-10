@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import br.com.puc.tcc.model.Comunicacao;
 import br.com.puc.tcc.model.Pessoa;
 import br.com.puc.tcc.repository.ComunicacaoRepository;
-import br.com.puc.tcc.util.EnviaEmail;
+import br.com.puc.tcc.util.EnviaEmailGmail;
 import br.com.puc.tcc.util.EnviaSMS;
 
 @Service
@@ -38,7 +38,7 @@ public class ComunicacaoService {
 	
 	public void enviarEmail(String email) {
 		try {
-			EnviaEmail.send("thiagoalmeida89@yahoo.com.br", email, "Alerta de Evacuação", "Alerta de Evacuação -  favor procurar um local seguro");
+			EnviaEmailGmail.send(email, "Alerta de Evacuação", "Alerta de Evacuação -  favor procurar um local seguro");
 		} catch (Exception e) {
 			logger.error("erro enviando email",e);
 		}
