@@ -1,10 +1,13 @@
 package br.com.puc.tcc.resources;
 
 import java.net.URI;
+import java.util.List;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,6 +36,12 @@ public class ComunicacaoResource {
 		return ResponseEntity.created(uri).build();
 	}
 	
-
+	@RequestMapping(method = RequestMethod.GET, produces = {
+			MediaType.APPLICATION_JSON_VALUE
+	})
+	public ResponseEntity<List<Comunicacao>> listar() {
+		List<Comunicacao> ativos = service.listar();
+		return ResponseEntity.status(HttpStatus.OK).body(ativos);
+	}
 	
 }

@@ -26,10 +26,14 @@ public class ComunicacaoService {
 	@Autowired
 	private ComunicacaoRepository repository;
 	
+	public List<Comunicacao> listar() {
+		return repository.findAll();
+	}	
+	
 	public Comunicacao salvar(Comunicacao comunicacao) {
 		List<Pessoa> lista = service.buscarPorBarragem(comunicacao.getBarragem());
 		for(Pessoa p : lista) {
-			enviarEmail(p.getEmail());
+			enviarEmail(p.getNome()+" <"+p.getEmail()+">");
 			//enviarSMS(p.getTelefone());
 		}
 		comunicacao.setData(new Date());
@@ -38,7 +42,7 @@ public class ComunicacaoService {
 	
 	public void enviarEmail(String email) {
 		try {
-			EnviaEmailGmail.send(email, "Alerta de Evacuação", "Alerta de Evacuação -  favor procurar um local seguro");
+			EnviaEmailGmail.send(email, "Alerta de Evacuação", "Alerta de Evacuação - Favor procurar um local seguro.");
 		} catch (Exception e) {
 			logger.error("erro enviando email",e);
 		}

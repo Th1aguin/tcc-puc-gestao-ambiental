@@ -1,6 +1,5 @@
 package br.com.puc.tcc.util;
 
-import java.io.IOException;
 import java.util.Properties;
 
 import org.springframework.mail.SimpleMailMessage;
@@ -29,7 +28,7 @@ public class EnviaEmailGmail {
 				
 				SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
 				
-				simpleMailMessage.setFrom("thiago.sistema.gestao.ambiental@gmail.com");
+				simpleMailMessage.setFrom("Sistema Gestao Ambiental <thiago.sistema.gestao.ambiental@gmail.com>");
 				simpleMailMessage.setTo(to);
 				simpleMailMessage.setSubject(subject);
 				simpleMailMessage.setText(message);
