@@ -28,8 +28,8 @@ public class SwaggerConfig {
     
     private ApiInfo apiInfo() {
         return new ApiInfo(
-          "Moniotramento API", 
-          "Api responsavel por cadastrar barragens e as inspeções de risco", 
+          "Monitoramento API", 
+          "Api responsável por cadastrar barragens e as inspeções de risco", 
           "V1", 
           "Terms of service", 
           new Contact("Thiago Almeida", "", "thiagoalmeida89@yahoo.com.br"), 
