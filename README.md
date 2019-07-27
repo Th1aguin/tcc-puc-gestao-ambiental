@@ -12,7 +12,9 @@ O escopo escolhido para o TCC foi o de Sistema de Gestão Ambiental.
 * [H2 batabase](http://www.h2database.com/html/main.html)
 * [Maven](https://maven.apache.org/)
 * [Bootstrap](https://getbootstrap.com/)
-
+* [RabbitMQ](https://www.rabbitmq.com/)
+* [Travis-CI](https://travis-ci.org/)
+* [Docker](https://www.docker.com/)
 
 
 ## Executando a aplicação
@@ -30,6 +32,7 @@ O escopo escolhido para o TCC foi o de Sistema de Gestão Ambiental.
 * monitoramento-service: Api de monitoramento.
 * seguranca-comunicacao: Api de segurança e comunicação.
 * monitoramento: Aplicaçao Web/mobile que consome os serviços feitos.
+* notificacoes-service: Responsavel por centralizar as notificacoes geradas por todos os modulos.
 
 ## Integração Contínua
 
