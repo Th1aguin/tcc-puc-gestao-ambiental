@@ -10,6 +10,14 @@ services:
     networks:
       - backend
 
+  rabbitmq:
+    image: rabbitmq:management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - backend
+       
   zull:
     depends_on:
       - eureka
@@ -25,12 +33,14 @@ services:
   seguranca-comunicacao:
     depends_on:
       - eureka
+      - rabbitmq
     image: th1aguin/seguranca-comunicacao:latest
     ports:
       - "8060:8060"
     restart: always
     environment:
      EUREKA_URI: http://eureka:8761/eureka
+     RABBIT_HOST: rabbitmq
     networks:
       - backend
 
@@ -43,6 +53,20 @@ services:
     restart: always
     environment:
      EUREKA_URI: http://eureka:8761/eureka
+    networks:
+      - backend
+
+  notificacoes-service:
+    depends_on:
+      - eureka
+      - rabbitmq
+    image: th1aguin/notificacoes-service:latest
+    ports:
+      - "8062:8062"
+    restart: always
+    environment:
+     EUREKA_URI: http://eureka:8761/eureka
+     RABBIT_HOST: rabbitmq
     networks:
       - backend
 
